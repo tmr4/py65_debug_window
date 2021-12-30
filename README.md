@@ -5,7 +5,7 @@ This repository provides a framework for adding a debug window to py65.  I've in
 
 # Contents
 
-I've added two modules, db_server and db_client to add a debug window to py65.  These assume you'll use the modules to handle interrupts.  These work for my build.  They should give you an idea for writing code for your own build.  Note that I'm a Python newbie and appreciate any feedback to make these better.
+I've added two modules (TBD), db_server and db_client to add a debug window to py65.  These assume you'll use the modules to handle interrupts.  These work for my build.  They should give you an idea for writing code for your own build.  Note that I'm a Python newbie and appreciate any feedback to make these better.
 
 * `db_server.py`
 
@@ -25,8 +25,8 @@ I've tried to minimize the changes to the core py65 modules.  The following modi
 
 1. `monitor.py`
 
-* Add a reference to interrupts class `from interrupts import Interrupts`
-* Create a new instance of the interrupts class with `self.interrupts = Interrupts(self, self._mpu)` at the end of the `_reset` method.
+* Add a reference to db_server class `from db_server import db_server as server`
+* Create a new instance of the db_server class with `TBD` at the end of the `_reset` method.
 
 # License
 
