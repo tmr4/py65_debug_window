@@ -3,6 +3,10 @@ Py65 (https://github.com/mnaberez/py65) is a great simulator for the 6502.  One 
 
 This repository provides a framework for adding a debug window to py65.  I've included sample routines for adding a debug window to my build, which includes the interrupt modifications linked above.  While not required, I use the VIA interrupt routine to open the debug window with a `<ESC>Q` or `<ESC>q`.  You'll need to modify that if you're not using the interrupt modifications.  As noted below, a few modifications need to be made to core py65 modules as well.
 
+# Screenshot
+
+![Screenshot of debug window](img/py65_dbwin.png)
+
 # Contents
 
 I've added two modules (TBD), db_server and db_client to add a debug window to py65.  These assume you'll use the modules to handle interrupts.  These work for my build.  They should give you an idea for writing code for your own build.  Note that I'm a Python newbie and appreciate any feedback to make these better.
