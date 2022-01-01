@@ -29,6 +29,7 @@ class client(cmd.Cmd):
         cmd.Cmd.__init__(self)
 
     def _add_shortcuts(self):
+        # uncomment shortcuts for added commands
         self._shortcuts = {'EOF':  'quit',
                            '~':    'tilde',
 #                           'a':    'assemble',
@@ -59,8 +60,7 @@ class client(cmd.Cmd):
 
     def precmd(self, line):
         # check if server has sent a notice (eg breakpoint or stopcode hit)
-        # *** TODO: this will only show when next debug command is entered.
-        # Would be nice for it to hit right away but that would likely require an extra thread. ***
+        # *** TODO: not sure this is currently needed but could be with other commands. ***
         msg = self.recMsg()
 
         if msg != None:
