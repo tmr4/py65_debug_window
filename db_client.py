@@ -269,7 +269,7 @@ class client(cmd.Cmd):
             print("Overflow error: %s" % args)
 
     def do_version(self, args):
-        print("\nPy65 Monitor")
+        print("\nDebug Terminal v0.0.0")
 
     def do_width(self, args):
         if args != '':
