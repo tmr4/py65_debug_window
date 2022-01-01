@@ -35,3 +35,20 @@ I've tried to minimize the changes to the core py65 modules.  The following modi
 # License
 
 The db_client.py module closely mirrors the functionality of the py65 monitor and I've used/modified a good portion of the code from the monitor.py module from py65 which is covered by a BSD 3-Clause License.  I've included that license.
+
+# Limitations
+
+The debug window has the following limitations:
+
+* The debug window doesn't have the following py65 commands: 
+...
+save            show_labels
+add_label       delete_label       load
+assemble        disassemble        
+cd              fill               mpu   reset
+cycles          goto               pwd   return
+...
+
+These could be added but I've left them out as I don't use them.
+
+* Providing a number of a radix different than the default as an argument in a command may cause problems if not properly prefixed.  For example `mem 0:2f` will crash the debug window if the default radix is decimal.  In this case you need to use the proper prefix, `mem 0:$2f`.  Note that this problem originates in the py65 address parser.  If I track down the cause I may submit the issue to the py65 team.
