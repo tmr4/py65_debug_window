@@ -45,20 +45,21 @@ The db_client.py module closely mirrors the functionality of the py65 monitor an
 
 The debug window has the following difference / limitations:
 
-* The debug window supports the following commands:
+* The debug window runs in a process separate from the py65 monitor with communications between the two over a socket connection.  The debug window supports the following commands:
 ````
 add_breakpoint     help  radix             step     width
 continue           mem   registers         tilde
 delete_breakpoint  quit  show_breakpoints  version
 ````
+These commands are available even when your program is running.  As such, a memory range that you examine may differ from the current memory contents if your program subsequently changes it.  
 
-* The `continue` or `c` command in the debug window continues program execution at an existing breakpoint or stopcode.
+* You can pause your program with the `step` or `z` command.  The new `continue` or `c` command in the debug window continues execution of a paused program.  This command can also be used to continue program execution after pausing at a breakpoint or stopcode.
 
 * Registers can't be changed with the `registers` command in the debug window.
 
 * The `version` command prints out `Debug Terminal v0.0.0`.
 
-* The following py65 commands are not available in the debug window: 
+* The following py65 monitor commands are not available in the debug window: 
 ````
 save            show_labels
 add_label       delete_label       load
@@ -67,10 +68,12 @@ cd              fill               mpu   reset
 cycles          goto               pwd   return
 ````
 
-To use these commands you'll need to break to the monitor with `<ESC>q` in the main window after closing the debug window (you cannot do this while the debug window is open).  These commands could be added to the debug window, but I've left them out as I don't use them.
+To use these commands you'll need to break to the monitor with `<ESC>q` in the main window (assuming you're using my interrupt routines) after closing the debug window (you cannot do this while the debug window is open).  These commands could be added to the debug window, but I've left them out as I don't use them.
 
 * The debug window does not print a register summary after every command.
 
 * The default width in the debug window is 72.
+
+* The `mem` or `m` command utilizes the same memory polling routine as the py65 monitor.  I've had to use a delay in this routine on my machine because this has to go over the socket connection.  As such the command is slow.  You may be able to modify the delay if your machine is more powerful.  Also the routine could be modified so the debug window makes only a single request to the py65 monitor server.  This would require a bit of rework though, especially if you examine large memory ranges.
 
 * Providing a number of a radix different than the default as an argument in a command may cause problems if not properly prefixed.  For example `mem 0:2f` will crash the debug window if the default radix is decimal.  In this case you need to use the proper prefix, `mem 0:$2f`.  Note that this problem originates in the py65 address parser.  If I track down the cause I may submit the issue to the py65 team.
