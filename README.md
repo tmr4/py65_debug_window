@@ -41,13 +41,13 @@ The db_client.py module closely mirrors the functionality of the py65 monitor an
 The debug window has the following limitations:
 
 * The debug window doesn't have the following py65 commands: 
-...
+....
 save            show_labels
 add_label       delete_label       load
 assemble        disassemble        
 cd              fill               mpu   reset
 cycles          goto               pwd   return
-...
+....
 
 These could be added but I've left them out as I don't use them.
 
