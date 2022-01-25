@@ -1,4 +1,9 @@
+# January 25, 2022 Note: Modification to py65 no longer required
+
+Now that I've learned a bit more Python, I've created a package that works on top of py65 rather than modifying it.  That let's you add a debug window while maintaining your py65 installation intact.  For an example, see [py65816](https://github.com/tmr4/py65816) for how I added a debug window to a 65816 simulation package (this version doesn't include interrupts but those could be easily incorporated).  You can do the same for the 65C02 by just replacing the 65816 references in `db_monitor.py` with the appropriate 65C02 references.
+
 # Add a separate debug window to py65
+
 Py65 (https://github.com/mnaberez/py65) is a great simulator for the 6502.  One thing I've wished for is a separate debug window so your program's console isn't affected by the py65 I/O.  After my success in modifying py65 for interrupts (https://github.com/tmr4/py65_int) I decided to try adding this feature. Luckily, py65 is open-source and enhancing it isn't very difficult.
 
 This repository provides a framework for adding a debug window to py65.  I've included sample routines for adding a debug window to my build, which includes the interrupt modifications linked above.  While not required, I use the VIA interrupt routine to open the debug window with a `<ESC>D` or `<ESC>d`.  You'll need to modify that if you're not using the interrupt modifications.  As noted below, a few modifications need to be made to core py65 modules as well.
